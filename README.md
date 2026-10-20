@@ -78,15 +78,17 @@ All figures below are computed by the notebook from the 33,766 reports.
 
 2. **Tracks are spatially structured, not noise.** Joining each aircraft's reports
    in `timestamp` order yields smooth, coherent polylines rather than a scatter
-   cloud (figure `figures/single_aircraft_route.png`). This is direct evidence
-   that the reconstructed `timestamp` ordering recovers real flight paths.
+   cloud — compare panels (a) and (b) of `figures/flight_tracks_frame.png`, which
+   plot exactly the same 33,766 points before and after the join. This is direct
+   evidence that the reconstructed `timestamp` ordering recovers real flight
+   paths. `figures/single_aircraft_route.png` isolates one continuous flight
+   (192 reports over seven minutes) and colours it by elapsed time.
 
 3. **The rolling window is the right abstraction.** A 180-second window holds a
    small, readable number of aircraft at any instant — for example **29 reports
    from 2 aircraft** in the first window. Incrementing `t` by one second makes
    traffic enter and leave the window smoothly, so the output reads as motion,
-   which a single static scatter of all 33,766 points cannot convey
-   (figure `figures/flight_tracks_frame.png`).
+   which a single static scatter of all 33,766 points cannot convey.
 
 4. **High-altitude traffic dominates; terminal traffic is a distinct minor mode.**
    Altitude spans 2,325–44,975 ft (mean 25,983 ft), and the distribution is
@@ -127,8 +129,8 @@ data-science-project/
 ├── flight_tracking.csv              the dataset analysed
 ├── requirements.txt                 exact package versions
 ├── figures/
-│   ├── flight_tracks_frame.png      rolling 180 s window, several frames
-│   └── single_aircraft_route.png    one aircraft's full route, coloured by time
+│   ├── flight_tracks_frame.png      raw reports vs the same reports joined into tracks
+│   └── single_aircraft_route.png    one continuous flight, coloured by elapsed time
 └── README.md
 ```
 
